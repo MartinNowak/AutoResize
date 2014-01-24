@@ -34,9 +34,9 @@
         height = target.val('').height(),
         scroll = textarea.scrollHeight,
         offset = scroll > height ? (scroll - height) : 0;
-        target.data('minHeight', height);
         target.data('scrollOffset', offset);
-        $.browser.msie && target.css('overflow-y', 'hidden').scroll(function(){this.scrollTop = 0});
+        // Issue 6 - IE scrollbar flickering
+        target.css('overflow-y', 'hidden');
         return target.val(value);
     }
 
@@ -44,10 +44,7 @@
         target = $(this),
         targetHeight = target.height(),
         scrollOffset = target.data('scrollOffset'),
-        minHeight = target.data('minHeight'),
         scrollTop = frame.scrollTop(),
-        scrollHeight;
-        $.browser.msie || target.height(minHeight);
         scrollHeight = target.prop('scrollHeight') - scrollOffset;
         target.height(scrollHeight);
         frame.scrollTop(scrollTop);
