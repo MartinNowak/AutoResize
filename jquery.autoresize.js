@@ -22,7 +22,11 @@
 
 "use strict";
 
- (function($, plugins, frame) { var
+ (function($) { var
+
+    plugins = $.fn,
+
+    frame = $(window),
 
     ALLOWED_NODES = 'textarea',
 
@@ -65,4 +69,4 @@
         return this.filter(ALLOWED_NODES).each(apply);
     };
 
-})(jQuery, jQuery.fn, jQuery(window));
+})(window.jQuery || window.$);
